@@ -5,18 +5,22 @@ import { SessionProvider } from "next-auth/react";
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
-import { CookiesProvider } from "react-cookie";
+import { Layout } from "@/components/app";
+import { Provider } from "react-redux";
+import { store } from "@/store";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
-    <SessionProvider session={session}>
-      <CookiesProvider>
-        <Component {...pageProps} />
-      </CookiesProvider>
-    </SessionProvider>
+    <Provider store={store}>
+      <SessionProvider session={session}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SessionProvider>
+    </Provider>
   );
 };
 
