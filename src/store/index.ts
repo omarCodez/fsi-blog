@@ -1,4 +1,4 @@
-import postsReducer from "@/features/postsSlice";
+import postsReducer from "@/features/blogSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
